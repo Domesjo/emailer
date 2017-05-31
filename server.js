@@ -9,4 +9,4 @@ app.use(morgan());
 app.use(bodyParser());
 
 
-app.listen(3000, ()=> console.log(`express is up and running on ${port}`));
+app.listen(3000, () => console.log(`express is up and running on ${port}`));
