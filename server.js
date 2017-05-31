@@ -19,7 +19,7 @@ app.use(morgan());
 app.use(bodyParser.urlendcoded({ extended: true }));
 
 app.post('/generate-email', (req, res) => {
-
+  console.log(req);
   const mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,

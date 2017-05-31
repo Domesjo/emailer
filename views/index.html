@@ -5,11 +5,50 @@
     <title>Emailer</title>
   </head>
   <body>
-    <form>
-      <label for="email">My Email</label>
-      <input type="email" name="email" placeholder="Enter you email">
-      <label for=""></label>   
+    <form method="POST">
+      <div>
+        <label for="email">My Email</label>
+        <input type="email" name="email" placeholder="Enter you email">
 
+        <label for="companyEmail">Company Email</label>
+        <input type="email" name="companyEmail" placeholder="Enter the recivers Email">
+
+        <label for="subject">Email Subject</label>
+        <input type="text" name="subject" placeholder="Enter the subject of the email">
+      </div>
+
+      <div>
+        <h2>Cover Letter</h2>
+
+        <label for="reciver">Enter Recivers Name</label>
+        <input type="text" name="reciver" placeholder="please enter the recivers name">
+
+        <label for="role">Enter the Role</label>
+        <input type="text" name="role" placeholder="Enter the role you are applying for">
+
+        <label for="city">Enter the city</label>
+        <input type="text" name="city" value="Enter the city the company is based in">
+
+        <label for="companyName">Enter the CompanyName</label>
+        <input type="text" name="companyName" placeholder="Enter the company Name">
+
+        <label for="frameworks">Enter Frameworks you have worked with</label>
+        <input type="text" name="frameworks" placeholder="Enter the framework you want to mention">
+
+        <label for="companyLanguage">Enter the companyLanguage</label>
+        <input type="text" name="companyLanguage" placeholder="Enter the companyLanguage that you want to learn">
+
+        <label for="portfolio">Enter the portfolio</label>
+        <input type="text" name="portfolio" placeholder="Enter your portfolio url">
+
+        <label for="name">Enter your name</label>
+        <input type="text" name="name" placeholder="Enter your name">
+
+        <label for="tel">Enter the telephone</label>
+        <input type="text" name="tel" placeholder="Enter your telephone number">
+
+      </div>
+      <button type="submit" name="button">Submit</button>
     </form>
   </body>
 </html>
