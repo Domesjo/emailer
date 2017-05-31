@@ -1,0 +1,22 @@
+{
+  "name": "emailer",
+  "version": "1.0.0",
+  "description": "Email template app with Sam Domesjö and Mike Hayden",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "git+https://github.com/Domesjo/emailer.git",
+  "author": "Mickyginger && Sam Domesjö",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Domesjo/emailer/issues"
+  },
+  "homepage": "https://github.com/Domesjo/emailer#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2"
+  }
+}
