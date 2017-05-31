@@ -3,23 +3,26 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const port = process.env.PORT|| 3000;
 const compileTemplate = require('./compileTemplate');
-const nodemailer = require('bluebird').promisifyAll(require('nodemailer'));
+const nodemailer = require('nodemailer');
+const Promise = require('bluebird');
 
-const transport = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.GMAIL_ADDRESS,
-    auth: process.env.GMAIL_PASSWORD
+    auth: process.env.GMAIL_PASSWORD,
+    pass: process.env.GMAIL_PASSWORD
   }
 });
 
 const app = express();
 
 app.use(morgan());
-app.use(bodyParser.urlendcoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.post('/generate-email', (req, res) => {
-  console.log(req);
   const mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,
@@ -27,13 +30,18 @@ app.post('/generate-email', (req, res) => {
     text: compileTemplate(req.body)
   };
 
-  transport
-    .sendMailSync(mailOptions)
-    .then((info) => {
-      console.log(info);
-      res.redirect('/');
-    })
-    .catch(err => res.status(500).send(err));
+
+  new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (err, info) => {
+      if(err) return reject(err);
+      return resolve(info);
+    });
+  })
+  .then((info) => {
+    console.log(info);
+    res.redirect('/');
+  })
+  .catch(err => res.status(500).send(err));
 });
 
 app.set('views', __dirname +'/index');

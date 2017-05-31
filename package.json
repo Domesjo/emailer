@@ -20,8 +20,7 @@
     "express": "^4.15.3",
     "jade": "^1.11.0",
     "morgan": "^1.8.2",
-    "nodemon": "^1.11.0",
-    "morgan": "^1.8.2",
-    "nodemailer": "^4.0.1"
+    "nodemailer": "^4.0.1",
+    "nodemon": "^1.11.0"
   }
 }
