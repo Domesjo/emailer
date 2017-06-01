@@ -66,5 +66,7 @@ router.get('/confirmation', (req, res)=>{
   res.status(200).render('coco', {mailOptions});
 });
 
+router.all('*',(req, res)=> res.redirect('/'));
+
 app.use(router);
 app.listen(3000, () => console.log(`express is up and running on ${port}`));
