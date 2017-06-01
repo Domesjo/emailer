@@ -6,7 +6,7 @@ const port = process.env.PORT|| 3000;
 const compileTemplate = require('./compileTemplate');
 const nodemailer = require('nodemailer');
 const Promise = require('bluebird');
-
+const pub =  __dirname;
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -21,16 +21,30 @@ const app = express();
 app.use(morgan());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', pub + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.use(express.static(pub));
 
+let template;
+let mailOptions = {};
 
-router.post('/generate-email', (req, res) => {
-  const mailOptions = {
+router.post('/generate', (req, res)=>{
+  mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,
     subject: req.body.subject,
     text: compileTemplate(req.body)
   };
+  template = mailOptions.text;
 
+  res.redirect('/confirmation');
+});
+
+
+
+router.post('/generate-email', (req, res) => {
+  console.log(mailOptions);
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if(err) return reject(err);
@@ -44,17 +58,12 @@ router.post('/generate-email', (req, res) => {
   .catch(err => res.status(500).send(err));
 });
 
-app.set('views', __dirname);
-app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/views'));
-
-
 router.get('/', (req,res)=>{
   res.status(200).render('index');
 });
 
 router.get('/confirmation', (req, res)=>{
-  res.status(200).render('coco');
+  res.status(200).render('coco', {mailOptions});
 });
 
 app.use(router);

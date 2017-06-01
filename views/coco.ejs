@@ -5,10 +5,9 @@
     <title>Emailer</title>
   </head>
   <body>
-    <form method="POST" action="/generate-email/send">
-      <textarea></textarea>
+    <form method="POST" action="/generate-email">
+      <textarea><%= mailOptions.text %></textarea>
       <button type="submit" name="button">Send</button>
-
     </form>
   </body>
 </html>

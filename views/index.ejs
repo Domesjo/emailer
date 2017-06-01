@@ -5,7 +5,8 @@
     <title>Emailer</title>
   </head>
   <body>
-    <form action="/generate-email" method="POST">
+    <a href="/auth/google">Sign in with GMAIL</a>
+    <form action="/generate" method="POST">
       <div>
         <label for="email">My Email</label>
         <input type="email" name="email" placeholder="Enter you email">
@@ -30,7 +31,11 @@
           </div>
           <div>
             <label for="city">Enter the city</label>
-            <input type="text" name="city" value="Enter the city the company is based in">
+            <input type="text" name="city" placeholder="Enter the city the company is based in">
+          </div>
+          <div>
+            <label for="sector">Enter the sector</label>
+            <input type="text" name="sector" placeholder="Enter the sector the company is based in">
           </div>
           <div>
             <label for="companyName">Enter the CompanyName</label>
