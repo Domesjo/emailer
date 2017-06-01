@@ -69,4 +69,4 @@ router.get('/confirmation', (req, res)=>{
 router.all('*',(req, res)=> res.redirect('/'));
 
 app.use(router);
-app.listen(3000, () => console.log(`express is up and running on ${port}`));
+app.listen(port, () => console.log(`express is up and running on ${port}`));
