@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const port = process.env.PORT|| 3000;
@@ -22,14 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post('/generate-email', (req, res) => {
+router.post('/generate-email', (req, res) => {
   const mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,
     subject: req.body.subject,
     text: compileTemplate(req.body)
   };
-
 
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (err, info) => {
@@ -44,13 +44,18 @@ app.post('/generate-email', (req, res) => {
   .catch(err => res.status(500).send(err));
 });
 
-app.set('views', __dirname +'/index');
+app.set('views', __dirname);
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/views'));
 
 
-app.get('/', (req,res)=>{
+router.get('/', (req,res)=>{
   res.status(200).render('index');
 });
 
+router.get('/confirmation', (req, res)=>{
+  res.status(200).render('coco');
+});
+
+app.use(router);
 app.listen(3000, () => console.log(`express is up and running on ${port}`));
