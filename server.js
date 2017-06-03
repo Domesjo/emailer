@@ -7,14 +7,25 @@ const compileTemplate = require('./compileTemplate');
 const nodemailer = require('nodemailer');
 const Promise = require('bluebird');
 const pub =  __dirname;
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_ADDRESS,
-    auth: process.env.GMAIL_PASSWORD,
-    pass: process.env.GMAIL_PASSWORD
-  }
+const rp = require('request-promise');
+
+const google = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
+const clientId = process.env.GMAIL_CLIENT_ID;
+const secret = process.env.GMAIL_CLIENT_SECRET;
+const redirectUri = 'http://localhost:3000/token';
+
+const oAuth2Client = new OAuth2(
+  clientId,
+  secret,
+  redirectUri
+);
+
+google.options({
+  auth: oAuth2Client
 });
+
+let transporter = {};
 
 const app = express();
 
@@ -29,12 +40,58 @@ app.use(express.static(pub));
 let template;
 let mailOptions = {};
 
+transporter = nodemailer.createTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    type: 'OAuth2'
+  }
+});
+
+const url = oAuth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: 'https://mail.google.com/'
+});
+
+router.get('/auth/google',(req, res)=>{
+  res.redirect(url);
+});
+
+router.get('/token', (req, res)=>{
+  const code = req.query.code;
+  oAuth2Client.getToken(code, (err, token)=>{
+
+    if(!err){
+      transporter.set('oauth2_provision_cb', (user, renew, callback) => {
+        const accessToken = token.access_token;
+        if(!accessToken){
+          return callback(new Error('Unknown user'));
+        }else{
+          return callback(null, accessToken);
+        }
+      });
+      oAuth2Client.setCredentials(token);
+    }
+    console.log(transporter);
+    res.redirect('/');
+  });
+});
+
 router.post('/generate', (req, res)=>{
   mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,
     subject: req.body.subject,
-    text: compileTemplate(req.body)
+    text: compileTemplate(req.body),
+    attachments: [{
+      filename: req.body.cvFile,
+      contentType: 'application/pdf'
+    }],
+    auth: {
+      user: process.env.GMAIL_ADDRESS
+    }
   };
   template = mailOptions.text;
 
@@ -42,9 +99,8 @@ router.post('/generate', (req, res)=>{
 });
 
 
-
 router.post('/generate-email', (req, res) => {
-  console.log(mailOptions);
+  console.log(transporter);
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if(err) return reject(err);
@@ -63,8 +119,10 @@ router.get('/', (req,res)=>{
 });
 
 router.get('/confirmation', (req, res)=>{
+  console.log(mailOptions);
   res.status(200).render('coco', {mailOptions});
 });
+
 
 router.all('*',(req, res)=> res.redirect('/'));
 
