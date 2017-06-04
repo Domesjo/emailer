@@ -1,0 +1,154 @@
+// Import the Bootstrap grid scss file from the 'bootstrap' folder
+@import "normalize/normalize/import-now";
+@import "bootstrap/bootstrap-grid";
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,600');
+
+$brand-color: #30C5FF;
+$light-grey: #bab9ba;
+$dark-grey: #3e3e3e;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: $dark-grey;
+}
+
+main {
+  padding-bottom: 30px;
+}
+
+header {
+  background-color: $brand-color;
+  margin-bottom: 30px;
+  padding: 10px 10px 6px;
+  h1 {
+    font-size: 1.5em;
+    a {
+      color: white;
+      i {
+        position: relative;
+        top: -1px;
+        right: -6px;
+      }
+    }
+  }
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+.heading-styles {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+.form-styles {
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+  padding: 10px 10px 8px;
+  transition: border-color 0.3s ease;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 20px;
+  &:focus {
+    outline: none !important;
+    border-color: $brand-color;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend .heading-styles;
+  text-align: center;
+  color: $brand-color;
+  margin: 0;
+}
+
+h2 {
+  margin: 20px 0 40px;
+}
+
+a {
+  color: $dark-grey;
+  text-decoration: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  @extend .heading-styles;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input {
+  &[type="text"],
+  &[type="email"] {
+    @extend .form-styles;
+  }
+}
+
+textarea {
+  resize: vertical;
+  height: 450px;
+  @extend .form-styles;
+}
+
+.button {
+  background-color: $brand-color;
+  color: white;
+  font-size: 14px;
+  border: 1px solid $brand-color;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 10px 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  &:hover {
+    background-color: darken($brand-color, 5%);
+  }
+}
+
+button {
+  &[type="submit"] {
+    width: 100%;
+    background-color: $brand-color;
+    color: white;
+    font-size: 14px;
+    border: 1px solid $brand-color;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 10px 8px;
+    &:hover {
+      background-color: darken($brand-color, 5%);
+    }
+  }
+}
+
+footer {
+  background-color: lighten($brand-color, 30%);
+  height: 40px;
+  text-align: center;
+  a {
+    line-height: 40px;
+    @extend .heading-styles;
+    font-size: 10px;
+  }
+}
+
+// Sticky footer styles
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -40px;
+}
+
+.push {
+  height: 40px;
+}

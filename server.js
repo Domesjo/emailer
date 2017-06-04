@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', pub + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-app.use(express.static(pub));
+app.use(express.static(`${__dirname}/public`));
 
 let template;
 let mailOptions = {};

@@ -2,81 +2,86 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Emailer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://use.fontawesome.com/2e0921ab0e.js"></script>
   </head>
   <body>
-    <a href="/auth/google">Sign in with GMAIL</a>
-    <form action="/auth/google" method="POST" enctype='multipart/form-data'>
-    </form>
-    <form action="/generate" method="POST">
-      <div>
-        <label for="email">My Email</label>
-        <input value="testEmail@bruh" type="email" name="email" placeholder="Enter you email">
-      </div>
-      <div>
-        <label for="companyEmail">Company Email</label>
-        <input value="samdomesjo@gmail.com" type="email" name="companyEmail" placeholder="Enter the recivers Email">
-      </div>
-      <div>
-        <label for="subject">Email Subject</label>
-        <input value="testSubject" type="text" name="subject" placeholder="Enter the subject of the email">
-      </div>
-      <div>
-        <h2>Cover Letter</h2>
-          <div>
-            <label for="reciver">Enter Recivers Name</label>
-            <input value="testReciverName" type="text" name="reciver" placeholder="please enter the recivers name">
-          </div>
-          <div>
-            <label for="role">Enter the Role</label>
-            <input value="testName" type="text" name="role" placeholder="Enter the role you are applying for">
-          </div>
-          <div>
-            <label for="city">Enter the city</label>
-            <input value="testCity" type="text" name="city" placeholder="Enter the city the company is based in">
-          </div>
-          <div>
-            <label for="sector">Enter the sector</label>
-            <input value="testSector" type="text" name="sector" placeholder="Enter the sector the company is based in">
-          </div>
-          <div>
-            <label for="paragraph">Enter the a paragraph</label>
-            <input value="testParagraph" type="text" name="paragraph" placeholder="Enter the paragraph the company is based in">
-          </div>
-          <div>
-            <label for="companyName">Enter the CompanyName</label>
-            <input value="testCompanyName" type="text" name="companyName" placeholder="Enter the company Name">
-          </div>
-          <div>
-            <label for="frameworks">Enter Frameworks you have worked with</label>
-            <input value="testFrameWorsk" type="text" name="frameworks" placeholder="Enter the framework you want to mention">
-          </div>
-          <div>
-            <label for="favouriteFramework">Enter you favouriteFramework you have worked with</label>
-            <input value="testFavouriteFramework" type="text" name="favouriteFramework" placeholder="Enter the favouriteFramework you want to mention">
-          </div>
-          <div>
-            <label for="companyLanguage">Enter the companyLanguage</label>
-            <input value="testLanguage" type="text" name="companyLanguage" placeholder="Enter the companyLanguage that you want to </div>learn">
-            <div>
-            <label for="portfolio">Enter the portfolio</label>
-            <input value="samdomesjo.com" type="text" name="portfolio" placeholder="Enter your portfolio url">
-          </div>
-          <div>
-            <label for="name">Enter your name</label>
-            <input value="testName" type="text" name="name" placeholder="Enter your name">
-          </div>
-          <div>
-            <label for="tel">Enter the telephone</label>
-            <input value="Test Phone number" type="text" name="tel" placeholder="Enter your telephone number">
-          </div>
-          <div>
-            <label for="cvFile">upload your cv!</label>
-            <input type="file" name="cvFile">
+    <div class="wrapper">
+      <header>
+        <h1><a href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Emailer</a></h1>
+      </header>
+      <main div class="container">
+        <div class="row">
+          <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+            <a href="/auth/google" class="button"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Gmail</a>
           </div>
         </div>
-      </div>
-      <button type="submit" name="button">Submit</button>
-    </form>
+        <form action="/generate" method="POST" class="row">
+          <div class="col-sm-12">
+            <label for="email">Your Email</label>
+            <input type="email" name="email" placeholder="Enter your email">
+          </div>
+          <div class="col-sm-12">
+            <label for="companyEmail">Company Email</label>
+            <input type="email" name="companyEmail" placeholder="Enter the receiver's email">
+          </div>
+          <div class="col-sm-12">
+            <label for="subject">Email Subject</label>
+            <input type="text" name="subject" placeholder="Enter the subject of the email">
+          </div>
+          <h2 class="col-sm-12">Cover Letter</h2>
+            <div class="col-md-6">
+              <label for="reciver">Enter receiver's name</label>
+              <input type="text" name="reciver" placeholder="Enter the receiver's name">
+            </div>
+            <div class="col-md-6">
+              <label for="role">Enter the role</label>
+              <input type="text" name="role" placeholder="Enter the role you are applying for">
+            </div>
+            <div class="col-md-6">
+              <label for="city">Enter the city</label>
+              <input type="text" name="city" placeholder="Enter the city the company is based in">
+            </div>
+            <div class="col-md-6">
+              <label for="sector">Enter the sector</label>
+              <input type="text" name="sector" placeholder="Enter the sector the company is based in">
+            </div>
+            <div class="col-sm-12">
+              <label for="companyName">Enter the company name</label>
+              <input type="text" name="companyName" placeholder="Enter the company name">
+            </div>
+            <div class="col-sm-12">
+              <label for="frameworks">Enter frameworks you have worked with</label>
+              <input type="text" name="frameworks" placeholder="Enter the framework you want to mention">
+            </div>
+            <div class="col-sm-12">
+              <label for="companyLanguage">Enter the company language that you want to learn</label>
+              <input type="text" name="companyLanguage" placeholder="Enter the company language that you want to learn">
+            </div>
+            <div class="col-sm-12">
+              <label for="portfolio">Enter your portfolio url</label>
+              <input type="text" name="portfolio" placeholder="Enter your portfolio url">
+            </div>
+            <div class="col-sm-12">
+              <label for="name">Enter your name</label>
+              <input type="text" name="name" placeholder="Enter your name">
+            </div>
+            <div class="col-sm-12">
+              <label for="tel">Enter your telephone</label>
+              <input type="text" name="tel" placeholder="Enter your telephone number">
+            </div>
+            <div class="col-sm-12">
+              <button type="submit" name="button">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="push"></div>
+      </main>
+    </div>
+    <footer>
+      <a href="https://github.com/Domesjo/emailer"><i class="fa fa-github" aria-hidden="true"></i> View Emailer on Github</a>
+    </footer>
   </body>
 </html>

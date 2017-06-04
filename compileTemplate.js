@@ -1,4 +1,3 @@
-
 module.exports = function(params) {
   return `${params.reciver},
 
@@ -10,7 +9,6 @@ ${params.paragraph}
 I have just graduated from a immersive program at General Assembly in Web Development. I enjoy working with different frameworks and libraries both on the back-end and front-end, I have experience using ${params.framework} which I both find very interesting to use. I find ${params.favouriteFramework} slightly more enjoyable because of it is less naming conventions and opinionated.
 Overall I find back-end problems more appealing because making these to work, and interact with each other feels super rewarding.
 
-I read in your Job description you use ${params.companyLanguage} on the back end, this is something I'd love to start learning and learn as an addition to my skillset.
 
 My CV is attached to this application.
 Here is a link to my portfolio
