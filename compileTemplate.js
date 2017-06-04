@@ -1,12 +1,10 @@
 module.exports = function(params) {
   return `Dear ${params.reciver},
 
-  I wanted to get in touch about the ${params.role} role to join your team here in
+I wanted to get in touch about the ${params.role} role to join your team here in
 ${params.city}.
 
 I find ${params.companyName} is doing some ground-breaking and interesting work in the ${params.sector}.
-
-
 
 I have just graduated from a immersive program at General Assembly in Web Development. I enjoy working with different frameworks and libraries both on the back-end and front-end, I have experience using ${params.framework} which I find very interesting to use.
 
