@@ -13,11 +13,6 @@
         <h1><a href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Emailer</a></h1>
       </header>
       <main div class="container">
-        <div class="row">
-          <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
-            <a href="/auth/google" class="button"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Gmail</a>
-          </div>
-        </div>
         <form action="/generate" method="POST" class="row">
           <div class="col-sm-12">
             <label for="email">Your Email</label>
@@ -49,6 +44,10 @@
               <input type="text" name="sector" placeholder="Enter the sector the company is based in">
             </div>
             <div class="col-sm-12">
+              <label for="paragraph">Enter a Paragraph</label>
+              <input type="text" name="paragraph" placeholder="Enter paragraph about the copmany">
+            </div>
+            <div class="col-sm-12">
               <label for="companyName">Enter the company name</label>
               <input type="text" name="companyName" placeholder="Enter the company name">
             </div>
@@ -71,6 +70,10 @@
             <div class="col-sm-12">
               <label for="tel">Enter your telephone</label>
               <input type="text" name="tel" placeholder="Enter your telephone number">
+            </div>
+            <div class="col-sm-12">
+              <label for="cvFile">Upload your CV</label>
+              <input type="file" name="cvFile" placeholder="Enter your telephone number">
             </div>
             <div class="col-sm-12">
               <button type="submit" name="button">Submit</button>

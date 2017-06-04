@@ -74,12 +74,12 @@ router.get('/token', (req, res)=>{
       });
       oAuth2Client.setCredentials(token);
     }
-    console.log(transporter);
-    res.redirect('/');
+    res.redirect('/create');
   });
 });
 
 router.post('/generate', (req, res)=>{
+  console.log(req.body);
   mailOptions = {
     from: req.body.email,
     to: req.body.companyEmail,
@@ -93,14 +93,13 @@ router.post('/generate', (req, res)=>{
       user: process.env.GMAIL_ADDRESS
     }
   };
+  console.log(mailOptions);
   template = mailOptions.text;
-
   res.redirect('/confirmation');
 });
 
 
 router.post('/generate-email', (req, res) => {
-  console.log(transporter);
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if(err) return reject(err);
@@ -114,7 +113,11 @@ router.post('/generate-email', (req, res) => {
   .catch(err => res.status(500).send(err));
 });
 
-router.get('/', (req,res)=>{
+router.get('/', (req, res)=>{
+  res.status(200).render('home');
+});
+
+router.get('/create', (req,res)=>{
   res.status(200).render('index');
 });
 
