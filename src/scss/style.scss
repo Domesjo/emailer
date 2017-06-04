@@ -94,6 +94,23 @@ textarea {
   @extend .form-styles;
 }
 
+.button {
+  background-color: $brand-color;
+  color: white;
+  font-size: 14px;
+  border: 1px solid $brand-color;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 10px 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  &:hover {
+    background-color: darken($brand-color, 5%);
+  }
+}
+
 button {
   &[type="submit"] {
     width: 100%;

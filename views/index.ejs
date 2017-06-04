@@ -13,7 +13,11 @@
         <h1><a href="/"><i class="fa fa-envelope-o" aria-hidden="true"></i> Emailer</a></h1>
       </header>
       <main div class="container">
-        <%# <a href="/auth/google">Sign in with GMAIL</a>%>
+        <div class="row">
+          <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+            <a href="/auth/google" class="button"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Gmail</a>
+          </div>
+        </div>
         <form action="/generate" method="POST" class="row">
           <div class="col-sm-12">
             <label for="email">Your Email</label>
