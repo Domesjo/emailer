@@ -1,17 +1,37 @@
-# emailer
-#CREATED BY [vm.sam, [vm.emily](https://github.com/eisacke), [vm.mike](https://github.com/mickyginger)];
-### Emailer is a app created to send out emails without having to write a template by yourself, The Idea is to send out many emails quick.
-### The stack is an express server with Node-mailer, ejs and Oauth2.
+# Emailer
 
-## Build
-#### It's a express serving with ejs templates. So the User fills a form which creates an email template   by passing an object to a function which assigns the form input to right place in the compile function.
-#### It also takes file upload which allows you to upload CVs or images.
+**const createdBy = [[vm.sam](https://github.com/Domesjo), [vm.emily](https://github.com/eisacke), [vm.mike](https://github.com/mickyginger)];**
 
-### The app runs fine on localhost but you need to attach in the process.env a GMAIL_ADDRESS, GMAIL_CLIENT_ID && GMAIL_CLIENT_SECRET.
+### Intro
 
-### Emailer is open source and if anyone comes up with a different solution do not hesitate to contact me as it is a work in progress.
-### currently we are working on getting it usable without having to preset the environment variable and run it online
+To the run the app:
 
-![coverletter](media/CL.png)
-![form](media/form.png)
-![home](media/home.png)
+```bash
+$ npm i
+$ nodemon
+```
+
+***Emailer*** is an app created to send out emails without having to write a template by yourself. The idea is to send out many emails quickly.
+
+The app is built with the following stack:
+
+* Express server
+* Node-mailer
+* ejs
+* Oauth2
+
+### Build
+
+It's a Express serving with ejs templates. The user fills a form which creates an email template by passing an object to a function which assigns the form input to right place in the compile function.
+
+It also takes file upload which allows you to upload CVs or images.
+
+The app runs fine on `localhost:3000` but you need to create the following environment variables: `GMAIL_ADDRESS`, `GMAIL_CLIENT_ID` and `GMAIL_CLIENT_SECRET`.
+
+> ***Emailer*** is open source and if anyone comes up with a different solution do not hesitate to contact me as it is a work in progress.
+
+> Currently we are working on getting it usable without having to preset the environment variable and run it online.
+
+<img src="media/emailer1.png" style="box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);">
+
+<img src="media/emailer2.png" style="box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);">
