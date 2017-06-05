@@ -32,4 +32,4 @@ The app runs fine on `localhost:3000` but you need to create the following envir
 
 > Currently we are working on getting it usable without having to preset the environment variable and run it online.
 
-![Emailer](media/emailer.jpg)
+![Emailer](media/emailer.png)
