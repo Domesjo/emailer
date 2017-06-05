@@ -79,12 +79,21 @@ label {
   @extend .heading-styles;
   font-size: 12px;
   font-weight: 600;
+  &.file {
+    @extend .button;
+    letter-spacing: normal;
+    font-weight: 300;
+    text-transform: capitalize;
+  }
 }
 
 input {
   &[type="text"],
   &[type="email"] {
     @extend .form-styles;
+  }
+  &[type="file"] {
+    display: none;
   }
 }
 
