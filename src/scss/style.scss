@@ -84,6 +84,7 @@ label {
     letter-spacing: normal;
     font-weight: 300;
     text-transform: capitalize;
+    display: inline-block;
   }
 }
 
@@ -95,6 +96,11 @@ input {
   &[type="file"] {
     display: none;
   }
+}
+
+.file-path {
+  line-height: 36px;
+  font-size: 12px;
 }
 
 textarea {
@@ -140,6 +146,8 @@ footer {
   background-color: lighten($brand-color, 30%);
   height: 40px;
   text-align: center;
+  position: relative;
+  z-index: 1;
   span, a {
     line-height: 40px;
     @extend .heading-styles;
@@ -160,4 +168,16 @@ html, body {
 
 .push {
   height: 40px;
+}
+
+@media only screen and (max-width: 767px) {
+  .file-path {
+    display: none;
+  }
+
+  footer {
+    span {
+      display: none;
+    }
+  }
 }
