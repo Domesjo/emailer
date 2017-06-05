@@ -126,7 +126,7 @@ router.get('/create', (req,res)=>{
 });
 
 router.get('/confirmation', (req, res)=>{
-//  console.log(mailOptions);
+  console.log(mailOptions);
   res.status(200).render('coco', {mailOptions});
 });
 
