@@ -12,6 +12,6 @@
 ### Emailer is open source and if anyone comes up with a different solution do not hesitate to contact me as it is a work in progress.
 ### currently we are working on getting it usable without having to preset the environment variable and run it online
 
-![coverletter]('/media/CL.png')
-![form]('/media/form.png')
-![home]('/media/home')
+![coverletter](media/CL.png)
+![form](media/form.png)
+![home](media/home.png)
