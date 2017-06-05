@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const port = process.env.PORT|| 3000;
 const compileTemplate = require('./compileTemplate');
 const nodemailer = require('nodemailer');
+const expressLayouts = require('express-ejs-layouts');
 const Promise = require('bluebird');
 const pub =  __dirname;
 const rp = require('request-promise');
@@ -35,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', pub + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 app.use(express.static(`${__dirname}/public`));
 
 let template;
