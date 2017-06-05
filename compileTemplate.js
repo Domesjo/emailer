@@ -12,7 +12,7 @@ Overall I find back-end problems more appealing because making these to work, an
 
 My CV is attached to this application.
 Here is a link to my portfolio
-samdomesjo.com
+${params.portfolio}
 
 If there is any questions please do not hesitate to contact me, I’d love to resolve any uncertainties.
 Sincerely yours,
