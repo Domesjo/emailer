@@ -81,7 +81,7 @@ router.get('/token', (req, res)=>{
 router.post('/generate', (req, res)=>{
   console.log(req.body);
   mailOptions = {
-    from: req.body.email,
+    from: process.env.GMAIL_ADDRESS,
     to: req.body.companyEmail,
     subject: req.body.subject,
     text: compileTemplate(req.body),
@@ -100,6 +100,7 @@ router.post('/generate', (req, res)=>{
 
 
 router.post('/generate-email', (req, res) => {
+  mailOptions.text = req.body.text;
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (err, info) => {
       if(err) return reject(err);
