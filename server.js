@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 const expressLayouts = require('express-ejs-layouts');
 const Promise = require('bluebird');
 const pub =  __dirname;
-const rp = require('request-promise');
+const multipart = require('connect-multiparty');
 
 const google = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
@@ -29,7 +29,7 @@ google.options({
 let transporter = {};
 
 const app = express();
-
+const multiparty = multipart();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -80,15 +80,16 @@ router.get('/token', (req, res)=>{
   });
 });
 
-router.post('/generate', (req, res)=>{
-  console.log(req.body);
+router.post('/generate', multiparty, (req, res)=>{
+  console.log(req.files.cvFile);
   mailOptions = {
     from: process.env.GMAIL_ADDRESS,
     to: req.body.companyEmail,
     subject: req.body.subject,
     text: compileTemplate(req.body),
     attachments: [{
-      filename: req.body.cvFile,
+      filename: req.files.cvFile.name,
+      path: req.files.cvFile.path,
       contentType: 'application/pdf'
     }],
     auth: {
@@ -125,7 +126,7 @@ router.get('/create', (req,res)=>{
 });
 
 router.get('/confirmation', (req, res)=>{
-  console.log(mailOptions);
+//  console.log(mailOptions);
   res.status(200).render('coco', {mailOptions});
 });
 
