@@ -9,7 +9,7 @@ const expressLayouts = require('express-ejs-layouts');
 const Promise = require('bluebird');
 const pub =  __dirname;
 const multipart = require('connect-multiparty');
-
+const rp = require('request-promise');
 const google = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const clientId = process.env.GMAIL_CLIENT_ID;
@@ -21,6 +21,7 @@ const oAuth2Client = new OAuth2(
   secret,
   redirectUri
 );
+
 
 google.options({
   auth: oAuth2Client
@@ -54,7 +55,7 @@ transporter = nodemailer.createTransport({
 
 const url = oAuth2Client.generateAuthUrl({
   access_type: 'offline',
-  scope: 'https://mail.google.com/'
+  scope: ['https://mail.google.com/', 'https://www.googleapis.com/auth/userinfo.email']
 });
 
 router.get('/auth/google',(req, res)=>{
@@ -64,10 +65,10 @@ router.get('/auth/google',(req, res)=>{
 router.get('/token', (req, res)=>{
   const code = req.query.code;
   oAuth2Client.getToken(code, (err, token)=>{
-
+    const accessToken = token.access_token;
+    console.log(token);
     if(!err){
       transporter.set('oauth2_provision_cb', (user, renew, callback) => {
-        const accessToken = token.access_token;
         if(!accessToken){
           return callback(new Error('Unknown user'));
         }else{
@@ -135,3 +136,5 @@ router.all('*',(req, res)=> res.redirect('/'));
 
 app.use(router);
 app.listen(port, () => console.log(`express is up and running on ${port}`));
+
+module.exports = app;
