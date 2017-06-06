@@ -6,6 +6,7 @@ const app = require('supertest')(require('../server'));
 
 beforeEach((done)=>{
   app.get('/auth/google');
+  app.get('/token');
   done();
 });
 
@@ -26,7 +27,7 @@ describe('GET /create get the create and see if oauth generating', ()=>{
   });
 });
 
-xdescribe('POST /generate ', ()=>{
+describe('POST /generate ', ()=>{
   it('should create an template and and set the mailOptions', (done)=>{
     app.post('/generate')
       .type('form')

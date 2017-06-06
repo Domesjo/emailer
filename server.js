@@ -64,6 +64,7 @@ router.get('/auth/google',(req, res)=>{
 
 router.get('/token', (req, res)=>{
   const code = req.query.code;
+
   oAuth2Client.getToken(code, (err, token)=>{
     const accessToken = token.access_token;
     console.log(token);
