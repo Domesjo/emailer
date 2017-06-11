@@ -3,6 +3,7 @@ const multipart = require('connect-multiparty');
 const router = express.Router();
 const multiparty = multipart();
 const compileTemplate = require('../compileTemplate');
+const compileFollowUp = require('../compileFollowUp');
 const nodemailer = require('nodemailer');
 const Promise = require('bluebird');
 const {url, oAuth2Client} = require('./gmail');
@@ -33,6 +34,9 @@ router.get('/', (req, res)=>{
 router.get('/create', (req,res)=>{
   res.status(200).render('index');
 });
+router.get('/create/followUp', (req,res)=>{
+  res.status(200).render('followUp');
+});
 
 router.get('/confirmation', (req, res)=>{
   console.log(mailOptions);
@@ -60,12 +64,19 @@ router.get('/token', (req, res)=>{
 });
 
 router.post('/generate', multiparty, (req, res)=>{
-  console.log(req.files.cvFile);
+  let compiler;
+  switch(true){
+    case req.body.emailType === 'followUp':
+      compiler = compileFollowUp;
+      break;
+    default:
+      compiler = compileTemplate;
+  }
   mailOptions = {
     from: process.env.GMAIL_ADDRESS,
     to: req.body.companyEmail,
     subject: req.body.subject,
-    text: compileTemplate(req.body),
+    text: compiler(req.body),
     attachments: [{
       filename: req.files.cvFile.name,
       path: req.files.cvFile.path,
