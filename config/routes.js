@@ -1,42 +1,15 @@
 const express = require('express');
 const multipart = require('connect-multiparty');
-const google = require('googleapis');
 const router = express.Router();
-const OAuth2 = google.auth.OAuth2;
 const multiparty = multipart();
-const clientId = process.env.GMAIL_CLIENT_ID;
-const secret = process.env.GMAIL_CLIENT_SECRET;
-const redirectUri = 'http://localhost:3000/token';
 const compileTemplate = require('../compileTemplate');
 const nodemailer = require('nodemailer');
 const Promise = require('bluebird');
-
-const oAuth2Client = new OAuth2(
-  clientId,
-  secret,
-  redirectUri
-);
-
-google.options({
-  auth: oAuth2Client
-});
+const {url, oAuth2Client} = require('./gmail');
 
 let transporter = {};
 let mailOptions = {};
 let template;
-router.get('/', (req, res)=>{
-  res.status(200).render('home');
-});
-
-router.get('/create', (req,res)=>{
-  res.status(200).render('index');
-});
-
-router.get('/confirmation', (req, res)=>{
-  console.log(mailOptions);
-  res.status(200).render('coco', {mailOptions});
-});
-
 
 transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -48,13 +21,22 @@ transporter = nodemailer.createTransport({
   }
 });
 
-const url = oAuth2Client.generateAuthUrl({
-  access_type: 'offline',
-  scope: ['https://mail.google.com/', 'https://www.googleapis.com/auth/userinfo.email']
-});
 
 router.get('/auth/google',(req, res)=>{
   res.redirect(url);
+});
+
+router.get('/', (req, res)=>{
+  res.status(200).render('home');
+});
+
+router.get('/create', (req,res)=>{
+  res.status(200).render('index');
+});
+
+router.get('/confirmation', (req, res)=>{
+  console.log(mailOptions);
+  res.status(200).render('coco', {mailOptions});
 });
 
 router.get('/token', (req, res)=>{
